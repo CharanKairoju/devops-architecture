@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Architecture Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .project {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            background: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        .project::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+        .project-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+        .docker-icon {
+            background: linear-gradient(45deg, #0db7ed, #2496ed);
+            color: white;
+        }
+        .k8s-icon {
+            background: linear-gradient(45deg, #326ce5, #0f4c81);
+            color: white;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .tech-tag {
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #555;
+            font-weight: 500;
+        }
+        .architecture {
+            margin: 20px 0;
+        }
+        .arch-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 15px 0;
+        }
+        .arch-component {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
+            margin: 0 5px;
+            position: relative;
+        }
+        .arch-arrow {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .features {
+            margin-top: 20px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            color: #555;
+        }
+        .feature-check {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .github-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #333, #555);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .github-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        @media (max-width: 768px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            .arch-flow {
+                flex-direction: column;
+            }
+            .arch-component {
+                margin: 5px 0;
+            }
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">DevOps Portfolio</div>
+            <div class="subtitle">Containerization & Orchestration Projects</div>
+        </div>
+
+        <div class="projects-container">
+            <!-- MERN Docker Project -->
+            <div class="project">
+                <div class="project-title">
+                    <div class="project-icon docker-icon">🐳</div>
+                    MERN Docker App
+                </div>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Docker Compose</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">AWS EC2</span>
+                </div>
+
+                <div class="architecture">
+                    <div class="arch-flow">
+                        <div class="arch-component">React Frontend</div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-component">Express API</div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-component">MongoDB</div>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Multi-container orchestration
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Production-ready deployment
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        AWS EC2 cloud hosting
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Environment standardization
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kubernetes Microservices Project -->
+            <div class="project">
+                <div class="project-title">
+                    <div class="project-icon k8s-icon">☸️</div>
+                    K8s Microservices
+                </div>
+                
+                <div class="tech-stack">
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Microservices</span>
+                    <span class="tech-tag">Service Mesh</span>
+                    <span class="tech-tag">Container Orchestration</span>
+                    <span class="tech-tag">Cloud Native</span>
+                </div>
+
+                <div class="architecture">
+                    <div class="arch-flow">
+                        <div class="arch-component">Load Balancer</div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-component">API Gateway</div>
+                        <div class="arch-arrow">→</div>
+                        <div class="arch-component">Microservices</div>
+                    </div>
+                </div>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Auto-scaling & self-healing
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Service discovery & mesh
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        High availability design
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-check">✓</span>
+                        Cloud-native architecture
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p style="color: #666; margin-bottom: 20px;">🚀 Building scalable, containerized applications with modern DevOps practices</p>
+            <a href="https://github.com/CharanKairoju/mern-docker-app" class="github-link">📁 MERN Docker Repo</a>
+            <a href="https://github.com/CharanKairoju/k8s-microservices" class="github-link">📁 K8s Microservices Repo</a>
+        </div>
+    </div>
+</body>
+</html>
